@@ -8689,6 +8689,7 @@ h1, h2, h3, h4, h5,
       background: #82ae46;
       font-size: 12px; }
     .product .img-prod img {
+        height: 200px;
       -webkit-transform: scale(1);
       -moz-transform: scale(1);
       -ms-transform: scale(1);
@@ -8759,7 +8760,7 @@ h1, h2, h3, h4, h5,
       transition: all 0.3s ease; }
     .product .text .bottom-area {
       position: absolute;
-      bottom: 15px;
+      /*bottom: 0;*/
       left: 0;
       right: 0;
       opacity: 0;
@@ -9183,7 +9184,7 @@ textarea.form-control {
   font-size: 24px; }
 
 .ftco-section {
-  padding: 6em 0;
+  padding: 4em 0;
   position: relative; }
 
 .ftco-no-pt {
@@ -9197,7 +9198,8 @@ textarea.form-control {
 
 .ftco-footer {
   font-size: 14px;
-  padding: 7em 0;
+  padding-top:40px;
+  padding-bottom: 40px;
   color: #000000; }
   .ftco-footer .ftco-footer-logo {
     text-transform: uppercase;

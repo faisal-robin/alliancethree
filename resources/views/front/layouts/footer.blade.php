@@ -1,15 +1,16 @@
     <footer class="ftco-footer ftco-section">
       <div class="container">
-        <div class="row mb-5">
+        <div class="row mb-2">
           <div class="col-md">
             <div class="ftco-footer-widget mb-4">
               <h2 class="ftco-heading-2">
                   <a  href="{{url('/')}}">
-                      <img style="height: 100px;" src="{{ asset('public/front_asset/images/logo.jpg')}}">
+                      <img class="float-left"  style="height: 80px;width: 50%" src="{{ asset('public/front_asset/images/logo-2.png')}}">
+                      <img class="float-left" style="height: 80px;width: 50%" src="{{ asset('public/front_asset/images/logo-3.png')}}">
                   </a>
               </h2>
-              <p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia.</p>
-              <ul class="ftco-footer-social list-unstyled float-md-left float-lft mt-5">
+                <p>Get e-mail updates about our latest shops and special offers</p>
+              <ul class="ftco-footer-social list-unstyled float-md-left float-lft">
                 <li class="ftco-animate"><a href="#"><span style="color:#82ae46" class="icon-twitter"></span></a></li>
                 <li class="ftco-animate"><a href="#"><span style="color:#82ae46" class="icon-facebook"></span></a></li>
                 <li class="ftco-animate"><a href="#"><span style="color:#82ae46" class="icon-instagram"></span></a></li>
@@ -69,3 +70,4 @@
         </div>
       </div>
     </footer>
+{{--_5xjXH1hwp_i--}}
