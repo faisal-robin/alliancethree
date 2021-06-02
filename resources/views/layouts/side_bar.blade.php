@@ -155,6 +155,15 @@
 
         </li>
 
+        <li class="nav-item">
+          <a href="{{ url('company/1/edit') }}" class="nav-link">
+            <i class="nav-icon fas fa-sign-out-alt"></i>
+            <p>
+              Company Info
+            </p>
+          </a>
+        </li>
+
 @endif
         <li class="nav-item">
           <a href="{{ route('logout') }}" class="nav-link" onclick="event.preventDefault();

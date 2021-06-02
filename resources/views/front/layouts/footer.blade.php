@@ -5,7 +5,7 @@
             <div class="ftco-footer-widget mb-4">
               <h2 class="ftco-heading-2">
                   <a  href="{{url('/')}}">
-                      <img class="float-left"  style="height: 80px;width: 50%" src="{{ asset('public/front_asset/images/logo-2.png')}}">
+                      <img class="float-left"  style="height: 80px;width: 50%" src="{{ url('storage/app/'.$company_info->logo)}}">
                       <img class="float-left" style="height: 80px;width: 50%" src="{{ asset('public/front_asset/images/logo-3.png')}}">
                   </a>
               </h2>

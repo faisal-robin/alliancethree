@@ -15,7 +15,7 @@ class CompanyController extends Controller
      */
     public function index()
     {
-        
+
     }
 
     /**
@@ -59,7 +59,7 @@ class CompanyController extends Controller
     public function edit($id)
     {
         $data['company_info'] = Company::find(1);
-        return view('admin.company.edit_company', $data);
+        return view('company.edit_company', $data);
     }
 
     /**
@@ -72,7 +72,7 @@ class CompanyController extends Controller
     public function update(Request $request, $id)
     {
         $company_info = Company::find($id);
-        
+
 
         $company_info->name = $request->name;
         $company_info->email = $request->email;
@@ -86,13 +86,12 @@ class CompanyController extends Controller
         $company_info->about_us = $request->about_us;
 
         if ($request->logo) {
-            
-            $exists = Storage::get($request->pre_logo);
 
+            $exists = Storage::get($request->pre_logo);
             if ($exists) {
                 Storage::delete($request->pre_logo);
             }
-            
+
             $path = $request->file('logo')->store('logo');
             $company_info->logo = $path;
         }
