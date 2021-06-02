@@ -25,6 +25,7 @@ Auth::routes();
 
 Route::group(['middleware' => 'auth'], function () {
     // Authentication Routes...
+    Route::resource('sliders', 'SliderController');
     Route::get('/home', 'HomeController@index')->name('home');
     Route::resource('/category','CategoryController');
     Route::resource('/sub_category','SubCategoryController');

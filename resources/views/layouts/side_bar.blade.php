@@ -35,6 +35,15 @@
           </a>
         </li>
 
+         <li class="nav-item">
+              <a href="{{ url('sliders') }}" class="nav-link">
+                <i class="nav-icon fas fa-sign-out-alt"></i>
+                <p>
+                  Slider
+                </p>
+              </a>
+         </li>
+
         <li class="nav-item">
           <a  href="{{ url('pos') }}" class="nav-link @if(request()->is(['pos'])) active @endif">
             <i class="fas fa-users nav-icon"></i>

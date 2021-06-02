@@ -1,17 +1,12 @@
 <?php
 
-namespace App\Http\Controllers\Front;
+namespace App\Http\Controllers;
 
-use App\Http\Controllers\Controller;
-use App\Models\Slider;
 use Illuminate\Http\Request;
-//use App\Mail\QuotationEmail;
 use App\Models\Company;
-use Mail;
-use DB;
-use Session;
-
-class FrontController extends Controller
+use File;
+use Storage;
+class CompanyController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -20,44 +15,7 @@ class FrontController extends Controller
      */
     public function index()
     {
-        $sliders = Slider::all();
-        return view('front/index',compact('sliders'));
-    }
-
-    public function about_us(){
-        return view('front/about_us');
-    }
-
-    public function product_list(){
-        return view('front/products');
-    }
-
-    public function contact(){
-        return view('front/contact');
-    }
-
-
-    public function contact_details(Request $request){
-
-        $contact = New Contact;
-
-        $data = $request->validate([
-            'name' => 'required',
-            'phone' => 'required',
-            'subject' => 'required',
-            'email' => 'required|email',
-            'message' => 'required',
-        ]);
-
-        $contact->name = $request->name;
-        $contact->phone = $request->phone;
-        $contact->subject = $request->subject;
-        $contact->email = $request->email;
-        $contact->message = $request->message;
-        $contact->save();
-        if ($contact->save()) {
-           Mail::to('info@workpermitcloud.co.uk')->send(new ContactEmail($data));
-        }
+        
     }
 
     /**
@@ -100,7 +58,8 @@ class FrontController extends Controller
      */
     public function edit($id)
     {
-
+        $data['company_info'] = Company::find(1);
+        return view('admin.company.edit_company', $data);
     }
 
     /**
@@ -112,7 +71,34 @@ class FrontController extends Controller
      */
     public function update(Request $request, $id)
     {
+        $company_info = Company::find($id);
+        
 
+        $company_info->name = $request->name;
+        $company_info->email = $request->email;
+        $company_info->phone_1 = $request->phone_1;
+        $company_info->phone_2 = $request->phone_2;
+        $company_info->address_1 = $request->address_1;
+        $company_info->fb_link = $request->fb_link;
+        $company_info->youtube_link = $request->youtube_link;
+        $company_info->twiter_link = $request->twiter_link;
+        $company_info->about_vedio = $request->about_vedio;
+        $company_info->about_us = $request->about_us;
+
+        if ($request->logo) {
+            
+            $exists = Storage::get($request->pre_logo);
+
+            if ($exists) {
+                Storage::delete($request->pre_logo);
+            }
+            
+            $path = $request->file('logo')->store('logo');
+            $company_info->logo = $path;
+        }
+
+        //echo "<pre>";print_r($type);die();
+        $company_info->save();
     }
 
     /**
