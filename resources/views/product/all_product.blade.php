@@ -5,7 +5,7 @@
     <div class="card">
         <div class="card-header">
             <h4 class="card-title">All Products</h4>
-            
+
             @if(Auth::user()->can('add-product'))
             <div class="card-tools">
                 <a href="{{url('products/create')}}" class="btn btn-info btn-md">
@@ -23,8 +23,6 @@
                         <th>Image</th>
                         <th>Name</th>
                         <th>Category</th>
-                        <th>Brand</th>
-                        <th>Price</th>
                         <th>Status</th>
                         <th>Action</th>
                     </tr>
@@ -45,12 +43,6 @@
                             {{ $row->product_main_category->category_name }}
                         </td>
                         <td>
-                            {{ $row->brand->brand_name }}
-                        </td>
-                        <td>
-                            {{ $row->price }}
-                        </td>
-                        <td>
                             @if($row->status == '1')
                             Active
                             @else
@@ -61,14 +53,14 @@
 
                             <a href=""  class="btn btn-primary btn-sm mr-2 float-left">
                                 View
-                            </a> 
-                                                      
+                            </a>
+
                             @if(Auth::user()->can('edit-product'))
                             <a href="products/{{ $row->id }}/edit"  class="btn btn-success btn-sm mr-2 float-left text-white">
                                 Edit
-                            </a> 
+                            </a>
                             @endif
-                            
+
 
                             @if(Auth::user()->can('delete-product'))
                             <form method="post" action="{{ route('products.destroy', $row->id) }}" style="display: inline-block;">
@@ -80,13 +72,13 @@
                         </td>
                     </tr>
                     @endforeach
-                        
+
                 </tbody>
             </table>
         </div>
     </div>
-    
-    
+
+
 </div>
 
 

@@ -23,15 +23,15 @@
 </style>
 
 <div class="col-12">
-    
+
     <div class="alert alert-success" id="success_msg" role="alert" style="display: none;"></div>
     <div id="error_msg"></div>
-    
+
     <form id="add_form">
-        
+
         @method('PUT')
         <input type="hidden" name="id" value="{{ $product_data->id }}">
-        
+
         <div class="card card-primary card-outline card-outline-tabs">
             <div class="card-header p-0 border-bottom-0">
                 <ul class="nav nav-tabs" id="custom-tabs-four-tab" role="tablist">
@@ -40,21 +40,21 @@
                             Basic Settings
                         </a>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link" id="custom-tabs-four-profile-tab" data-toggle="pill" href="#custom-tabs-four-profile" role="tab" aria-controls="custom-tabs-four-profile" aria-selected="false">
-                            Attribute
-                        </a>
-                    </li>
+{{--                    <li class="nav-item">--}}
+{{--                        <a class="nav-link" id="custom-tabs-four-profile-tab" data-toggle="pill" href="#custom-tabs-four-profile" role="tab" aria-controls="custom-tabs-four-profile" aria-selected="false">--}}
+{{--                            Attribute--}}
+{{--                        </a>--}}
+{{--                    </li>--}}
                     <li class="nav-item">
                         <a class="nav-link" id="seo-tab" data-toggle="pill" href="#seo" role="tab" aria-controls="seo" aria-selected="false">
                             SEO
                         </a>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link" id="custom-tabs-four-settings-tab" data-toggle="pill" href="#custom-tabs-four-settings" role="tab" aria-controls="custom-tabs-four-settings" aria-selected="false">
-                            Options
-                        </a>
-                    </li>
+{{--                    <li class="nav-item">--}}
+{{--                        <a class="nav-link" id="custom-tabs-four-settings-tab" data-toggle="pill" href="#custom-tabs-four-settings" role="tab" aria-controls="custom-tabs-four-settings" aria-selected="false">--}}
+{{--                            Options--}}
+{{--                        </a>--}}
+{{--                    </li>--}}
                 </ul>
             </div>
             <div class="card-body">
@@ -139,15 +139,15 @@
                                 <div class="card-body">
                                         <p class="card-text">
                                             To add combinations, you first need to create proper attributes and values in <strong>Attributes</strong>.
-                                            When done, you may enter the wanted attributes (like "size" or "color") and their respective values ("XS", "red", "all", etc.) in the field below; or simply select them from the right column. 
+                                            When done, you may enter the wanted attributes (like "size" or "color") and their respective values ("XS", "red", "all", etc.) in the field below; or simply select them from the right column.
                                         </p>
 
                                     <a href="{{url('attributes')}}" class="card-link">Attributes Link</a>
                                 </div>
-                                
-                                <div class="card" style="height: 150px; overflow: auto;"> 
-                                    <div style="margin-left: 15px" id="product-attribute">    
-                                    </div>    
+
+                                <div class="card" style="height: 150px; overflow: auto;">
+                                    <div style="margin-left: 15px" id="product-attribute">
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -172,7 +172,7 @@
                                     <div class="attribute">
                                         <label>
                                             <input type="checkbox" class="attribute-checkbox" id="attribute-{{ $val->id }}" @if(in_array($val->id, $product_attibute_array)) checked @endif
-                                                   data-label="{{ $row->attribute_group_name }} : {{ $val->attribute_name }}" value="{{ $val->id }}"> 
+                                                   data-label="{{ $row->attribute_group_name }} : {{ $val->attribute_name }}" value="{{ $val->id }}">
                                             {{ $val->attribute_name }}
                                         </label>
                                     </div>
@@ -183,7 +183,7 @@
                             @endforeach
 
                         </div>
-                        
+
                     </div>
                 </div>
                 <div class="tab-pane fade" id="seo" role="tabpanel" aria-labelledby="seo-tab">
@@ -251,7 +251,7 @@
             </label>
         </div>
         <div class="col-sm-5 col-lg-7 text-right">
-            
+
             <button class="btn btn-primary js-btn-save ml-3" id="add_btn" type="button">
                     <span>Save</span>
                 </button>
@@ -300,25 +300,25 @@
     }
 
     var attribute_array = <?php echo json_encode($product_attibute_array);?>;
-    
+
     add_attribute_checkbox(attribute_array);
-   
+
 
     $(".attribute-checkbox").change(function () {
         if($(this).is(':checked')) {}
-            
+
         if($.inArray(parseInt($(this).val()), attribute_array) === -1){
             attribute_array.push(parseInt($(this).val()));
         } else if($.inArray(parseInt($(this).val()), attribute_array) != -1){
            const index = attribute_array.indexOf(parseInt($(this).val()));
            attribute_array.splice(index, 1);
         }
-        
+
         add_attribute_checkbox(attribute_array);
     });
-    
+
     function add_attribute_checkbox(attribute_array) {
-        
+
         var html = "";
         attribute_array.forEach(function (item) {
             html += '<div id="product-attribute'+item+'">\
@@ -328,7 +328,7 @@
         });
         $("#product-attribute").html(html);
     }
-    
+
     $("#status").change(function () {
         if ($(this).is(":checked")) {
             $(".active_status").text("Active");
@@ -358,7 +358,7 @@
             if(json_data.status == 'Success') {
                 $("#success_msg").html("Data Update Successfully");
                 $("#success_msg").show();
-                
+
                 window.location.href = "{{ url('products')}}";
             }
         }).fail(function (data, textStatus, jqXHR) {
@@ -376,7 +376,7 @@
 
     $("#on_sale").click(function () {
         $("#sale_price_div").hide();
-        
+
         if ($('#on_sale').prop('checked')) {
             $("#sale_price_div").show();
         }

@@ -2,7 +2,7 @@
   <aside class="main-sidebar sidebar-dark-primary elevation-4">
     <!-- Brand Logo -->
     <a href="index3.html" class="brand-link">
-      <img src="{{ asset('public/front_asset/images/logo.jpg') }}" alt="AdminLTE Logo" class="brand-image elevation-3"
+      <img src="{{ url('storage/app/'.$company_info->logo)}}" alt="AdminLTE Logo" class="brand-image elevation-3"
            style="opacity: .8">
       <span class="brand-text font-weight-light">Alliance Three</span>
     </a>
@@ -44,34 +44,34 @@
               </a>
          </li>
 
-        <li class="nav-item">
-          <a  href="{{ url('pos') }}" class="nav-link @if(request()->is(['pos'])) active @endif">
-            <i class="fas fa-users nav-icon"></i>
-            <p>
-              Pos
-            </p>
-          </a>
-        </li>
+{{--        <li class="nav-item">--}}
+{{--          <a  href="{{ url('pos') }}" class="nav-link @if(request()->is(['pos'])) active @endif">--}}
+{{--            <i class="fas fa-users nav-icon"></i>--}}
+{{--            <p>--}}
+{{--              Pos--}}
+{{--            </p>--}}
+{{--          </a>--}}
+{{--        </li>--}}
 
-        <li class="nav-item">
-          <a href="{{ url('customer') }}" class="nav-link @if(request()->is(['customer'])) active @endif">
-            <i class="fas fa-users nav-icon"></i>
-            <p>
-              Customer
-            </p>
-          </a>
-        </li>
+{{--        <li class="nav-item">--}}
+{{--          <a href="{{ url('customer') }}" class="nav-link @if(request()->is(['customer'])) active @endif">--}}
+{{--            <i class="fas fa-users nav-icon"></i>--}}
+{{--            <p>--}}
+{{--              Customer--}}
+{{--            </p>--}}
+{{--          </a>--}}
+{{--        </li>--}}
 
-        @if($user->can('view-user'))
-        <li class="nav-item">
-          <a href="{{url('users')}}" class="nav-link @if(request()->is(['users'])) active @endif">
-            <i class="fas fa-users-cog nav-icon"></i>
-            <p>
-              Users
-            </p>
-          </a>
-        </li>
-        @endif
+{{--        @if($user->can('view-user'))--}}
+{{--        <li class="nav-item">--}}
+{{--          <a href="{{url('users')}}" class="nav-link @if(request()->is(['users'])) active @endif">--}}
+{{--            <i class="fas fa-users-cog nav-icon"></i>--}}
+{{--            <p>--}}
+{{--              Users--}}
+{{--            </p>--}}
+{{--          </a>--}}
+{{--        </li>--}}
+{{--        @endif--}}
 
         <li class="nav-item">
           <a href="{{ url('products') }}" class="nav-link @if(request()->is(['products'])) active @endif">
@@ -109,14 +109,14 @@
                 <p>Category</p>
               </a>
             </li>
-            <li class="nav-item">
-              <a href="{{url('attributes')}}" class="nav-link @if(request()->is(['attributes'])) active @endif">
-                <i class="far fa-circle nav-icon"></i>
-                <p>
-                  Attribute
-                </p>
-              </a>
-            </li>
+{{--            <li class="nav-item">--}}
+{{--              <a href="{{url('attributes')}}" class="nav-link @if(request()->is(['attributes'])) active @endif">--}}
+{{--                <i class="far fa-circle nav-icon"></i>--}}
+{{--                <p>--}}
+{{--                  Attribute--}}
+{{--                </p>--}}
+{{--              </a>--}}
+{{--            </li>--}}
             <li class="nav-item">
               <a href="units" class="nav-link @if(request()->is(['units'])) active @endif">
                 <i class="far fa-circle nav-icon"></i>
@@ -126,34 +126,34 @@
           </ul>
         </li>
      @endif
-        <li class="nav-item has-treeview @if(request()->is(['roles','permissions'])) active menu-open @endif">
-          <a href="#" class="nav-link">
-            <i class="nav-icon fas fa-user-lock"></i>
-            <p>
-              Role Permission
-              <i class="right fas fa-angle-left"></i>
-            </p>
-          </a>
-          <ul class="nav nav-treeview">
-            <li class="nav-item">
-              <a href="{{url('roles')}}" class="nav-link @if(request()->is(['roles'])) active @endif">
-                <i class="far fa-circle nav-icon"></i>
-                <p>
-                  Roles
-                </p>
-              </a>
-            </li>
-            <li class="nav-item">
-              <a href="{{url('permissions')}}" class="nav-link @if(request()->is(['permissions'])) active @endif">
-                <i class="far fa-circle nav-icon"></i>
-                <p>
-                  Permissions
-                </p>
-              </a>
-            </li>
-          </ul>
+{{--        <li class="nav-item has-treeview @if(request()->is(['roles','permissions'])) active menu-open @endif">--}}
+{{--          <a href="#" class="nav-link">--}}
+{{--            <i class="nav-icon fas fa-user-lock"></i>--}}
+{{--            <p>--}}
+{{--              Role Permission--}}
+{{--              <i class="right fas fa-angle-left"></i>--}}
+{{--            </p>--}}
+{{--          </a>--}}
+{{--          <ul class="nav nav-treeview">--}}
+{{--            <li class="nav-item">--}}
+{{--              <a href="{{url('roles')}}" class="nav-link @if(request()->is(['roles'])) active @endif">--}}
+{{--                <i class="far fa-circle nav-icon"></i>--}}
+{{--                <p>--}}
+{{--                  Roles--}}
+{{--                </p>--}}
+{{--              </a>--}}
+{{--            </li>--}}
+{{--            <li class="nav-item">--}}
+{{--              <a href="{{url('permissions')}}" class="nav-link @if(request()->is(['permissions'])) active @endif">--}}
+{{--                <i class="far fa-circle nav-icon"></i>--}}
+{{--                <p>--}}
+{{--                  Permissions--}}
+{{--                </p>--}}
+{{--              </a>--}}
+{{--            </li>--}}
+{{--          </ul>--}}
 
-        </li>
+{{--        </li>--}}
 
         <li class="nav-item">
           <a href="{{ url('company/1/edit') }}" class="nav-link">

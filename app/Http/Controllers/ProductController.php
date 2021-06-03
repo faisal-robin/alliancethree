@@ -36,7 +36,7 @@ class ProductController extends Controller {
         $data['all_unit'] = Unit::all();
 
         $data['all_attribute_with_group'] = AttributeGroup::with('attributes')->get();
-        
+
 
         $category = array(
             'categories' => array(),
@@ -47,7 +47,7 @@ class ProductController extends Controller {
             $category['categories'][$row->id] = $row;
             $category['parent_cats'][$row->parent_id][] = $row->id;
         }
-        
+
 //        echo '<pre>';print_r($data['all_attribute_with_group']);die;
         $category_list = "<ul class=''><li class='form-control-label text-right main-category'>Main category</li>" . $this->buildCategory('', $category) . "</ul>";
 
@@ -115,16 +115,11 @@ class ProductController extends Controller {
     public function store(Request $request) {
         $product = new Product;
 
-        $request->validate([
+         $request->validate([
             'name' => 'required|unique:products',
-            'brand' => 'required',
             'main_category' => 'required',
-            'price' => 'required',
-            'quantity' => 'required',
-            'unit' => 'required',
-            'sku' => 'required|unique:products',
         ]);
-        
+
         $response['status'] = 'Error';
 
         $product->name = $request->name;
@@ -149,26 +144,28 @@ class ProductController extends Controller {
         if($request->status) {
             $product->status = $request->status;
         }
-        
+
+//        dd($product);
+
         $product->save();
-        
+
         $data_category = array();
         if($request->category) {
-            foreach ($request->category as $value) {           
+            foreach ($request->category as $value) {
                 $data_category['product_id'] = $product->id;
                 $data_category['category_id'] = $value;
                 //$product->categories()->attach($data_category);
                 DB::table('products_categories')->insert($data_category);
             }
         }
-        
+
         $data_attribute = array();
         if($request->attribute) {
-            foreach ($request->attribute as $row) {           
+            foreach ($request->attribute as $row) {
 //                $data_attribute['product_id'] = $product->id;
 //                $data_attribute['attribute_id'] = $row;
 //                $data_attribute['product_attribute_quantity'] = $request->quantity;
-                
+
                 $data_attribute[] = [
                     'product_id' => $product->id,
                     'attribute_id' => $row,
@@ -178,11 +175,11 @@ class ProductController extends Controller {
             }
             DB::table('products_attributes')->insert($data_attribute);
         }
-        
+
         $data_image = array();
         $i = 0;
         if($request->images_name) {
-            foreach ($request->images_name as $row) {           
+            foreach ($request->images_name as $row) {
                 $data_image['product_id'] = $product->id;
                 $data_image['images_name'] = $row;
                 $data_image['is_main_image'] = 0;
@@ -194,11 +191,11 @@ class ProductController extends Controller {
                 DB::table('products_images')->insert($data_image);
             }
         }
-        
+
         if(isset($product->id)) {
             $response['status'] = 'Success';
         }
-        
+
         echo json_encode($response);
     }
 
@@ -222,7 +219,7 @@ class ProductController extends Controller {
         $data['product_data'] = Product::find($id);
         $all_category = Category::all();
         $data['all_brand'] = Brand::all();
-        
+
         $data['all_attribute_with_group'] = AttributeGroup::with('attributes')->get();
 
         $category = array(
@@ -234,7 +231,7 @@ class ProductController extends Controller {
             $category['categories'][$row->id] = $row;
             $category['parent_cats'][$row->parent_id][] = $row->id;
         }
-        
+
         $product_attibute_array = array();
         foreach ($data['product_data']->attributes as $row) {
             $product_attibute_array[] = $row->pivot->attribute_id;
@@ -245,7 +242,7 @@ class ProductController extends Controller {
         $data['product_attibute_array'] = $product_attibute_array;
         $category_list = "<ul class=''><li class='form-control-label text-left main-category'>Main category</li>" . $this->buildCategory('', $category, $data['product_data']->main_category) . "</ul>";
         $data['category_list'] = $category_list;
-        
+
         return view('product.edit_product', $data);
     }
 
@@ -261,13 +258,9 @@ class ProductController extends Controller {
 
         $request->validate([
             'name' => 'required|unique:products,name,'. $id,
-            'brand' => 'required',
             'main_category' => 'required',
-            'price' => 'required',
-            'quantity' => 'required',
-            'sku' => 'required|unique:products,sku,'. $id,
         ]);
-        
+
         $response['status'] = 'Error';
 
         $product->name = $request->name;
@@ -290,29 +283,29 @@ class ProductController extends Controller {
         if($request->status) {
             $product->status = $request->status;
         }
-        
+
         $product->save();
-        
+
         DB::table('products_categories')
                 ->where('product_id', '=', $product->id)
                 ->delete();
-        
+
         $data_category = array();
         if($request->category) {
-            foreach ($request->category as $value) {           
+            foreach ($request->category as $value) {
                 $data_category['product_id'] = $product->id;
                 $data_category['category_id'] = $value;
                 //$product->categories()->attach($data_category);
                 DB::table('products_categories')->insert($data_category);
             }
         }
-        
+
         $data_attribute = array();
-        
+
         DB::table('products_attributes')
                 ->where('product_id', '=', $product->id)
                 ->delete();
-        
+
         if($request->attribute) {
             foreach ($request->attribute as $row) {
                 $data_attribute[] = [
@@ -321,16 +314,16 @@ class ProductController extends Controller {
                     'product_attribute_quantity' => $request->quantity
                 ];
             }
-            
+
             DB::table('products_attributes')->insert($data_attribute);
-            
+
         }
-        
+
         $data_image = array();
         $i = 0;
-        
+
         if($request->images_name) {
-            foreach ($request->images_name as $row) {           
+            foreach ($request->images_name as $row) {
                 $data_image['product_id'] = $product->id;
                 $data_image['images_name'] = $row;
                 $data_image['is_main_image'] = 0;
@@ -342,11 +335,11 @@ class ProductController extends Controller {
                 DB::table('products_images')->insert($data_image);
             }
         }
-        
+
         if(isset($product->id)) {
             $response['status'] = 'Success';
         }
-        
+
         echo json_encode($response);
     }
 
@@ -383,7 +376,7 @@ class ProductController extends Controller {
     public function destroy($id) {
         $product = Product::find($id);
         $product->delete();
-        
+
         return redirect('products');
     }
 

@@ -5,15 +5,15 @@
     .card-body ul{
         padding-left: 14px;
     }
-    
+
     .card-body ul li{
         list-style: none;
     }
-    
+
     .dz-message{
         display: none;
     }
-    
+
     .dropzone {
         min-height: 150px;
         border: 1px solid #ced4da;
@@ -41,11 +41,11 @@
 </style>
 
 <div class="col-12 pt-5">
-    
+
     <div class="alert alert-success" id="success_msg" role="alert" style="display: none;"></div>
     <div id="error_msg"></div>
-    
-    
+
+
     <form id="add_form">
         <div class="card card-primary card-outline card-outline-tabs">
             <div class="card-header p-0 border-bottom-0">
@@ -55,21 +55,21 @@
                             Basic Settings
                         </a>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link" id="custom-tabs-four-profile-tab" data-toggle="pill" href="#custom-tabs-four-profile" role="tab" aria-controls="custom-tabs-four-profile" aria-selected="false">
-                            Attribute
-                        </a>
-                    </li>
+{{--                    <li class="nav-item">--}}
+{{--                        <a class="nav-link" id="custom-tabs-four-profile-tab" data-toggle="pill" href="#custom-tabs-four-profile" role="tab" aria-controls="custom-tabs-four-profile" aria-selected="false">--}}
+{{--                            Attribute--}}
+{{--                        </a>--}}
+{{--                    </li>--}}
                     <li class="nav-item">
                         <a class="nav-link" id="seo-tab" data-toggle="pill" href="#seo" role="tab" aria-controls="seo" aria-selected="false">
                             SEO
                         </a>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link" id="custom-tabs-four-settings-tab" data-toggle="pill" href="#custom-tabs-four-settings" role="tab" aria-controls="custom-tabs-four-settings" aria-selected="false">
-                            Options
-                        </a>
-                    </li>
+{{--                    <li class="nav-item">--}}
+{{--                        <a class="nav-link" id="custom-tabs-four-settings-tab" data-toggle="pill" href="#custom-tabs-four-settings" role="tab" aria-controls="custom-tabs-four-settings" aria-selected="false">--}}
+{{--                            Options--}}
+{{--                        </a>--}}
+{{--                    </li>--}}
                 </ul>
             </div>
             <div class="card-body">
@@ -133,7 +133,7 @@
                                         </div>
                                         <div class="form-group">
                                             <label>Quantity</label>
-                                            <input type="text" name="quantity" class="form-control">                                         
+                                            <input type="text" name="quantity" class="form-control">
                                         </div>
                                         <div class="form-group">
                                             <label>Unit</label>
@@ -166,16 +166,16 @@
 
                                         <p class="card-text">
                                             To add combinations, you first need to create proper attributes and values in <strong>Attributes</strong>.
-                                            When done, you may enter the wanted attributes (like "size" or "color") and their respective values ("XS", "red", "all", etc.) in the field below; or simply select them from the right column. 
+                                            When done, you may enter the wanted attributes (like "size" or "color") and their respective values ("XS", "red", "all", etc.) in the field below; or simply select them from the right column.
                                         </p>
 
                                         <a href="{{url('attributes')}}" class="card-link">Attributes Link</a>
                                     </div>
                                 </div>
-                                
-                                <div class="card" style="height: 150px; overflow: auto;"> 
+
+                                <div class="card" style="height: 150px; overflow: auto;">
                                     <div id="product-attribute" class="card-body">
-                                        
+
                                     </div>
                                 </div>
                             </div>
@@ -199,7 +199,7 @@
                                         @foreach($row->attributes as $val)
                                         <div class="attribute">
                                             <label>
-                                                <input type="checkbox" class="attribute-checkbox" id="attribute-{{ $val->id }}" data-label="{{ $row->attribute_group_name }} : {{ $val->attribute_name }}" value="{{ $val->id }}"> 
+                                                <input type="checkbox" class="attribute-checkbox" id="attribute-{{ $val->id }}" data-label="{{ $row->attribute_group_name }} : {{ $val->attribute_name }}" value="{{ $val->id }}">
                                                 {{ $val->attribute_name }}
                                             </label>
                                         </div>
@@ -209,8 +209,8 @@
                                 </div>
                                 @endforeach
                             </div>
-                            
-                            
+
+
                         </div>
                     </div>
                     <div class="tab-pane fade" id="seo" role="tabpanel" aria-labelledby="seo-tab">
@@ -321,35 +321,35 @@
             }
         });
     }
-    
+
     $("[name=name]").keyup(function () {
         var product_name = $(this).val();
         product_name = product_name.replace(/\s+/g, '-').toLowerCase();
 //        console.log(product_name);
         $("[name=slug]").val(product_name);
     });
-    
+
     var attribute_array = [];
     $(".attribute-checkbox").change(function () {
-        
+
         if($.inArray($(this).val(), attribute_array) == -1){
             attribute_array.push($(this).val());
         } else if($.inArray($(this).val(), attribute_array) != -1){
            const index = attribute_array.indexOf($(this).val());
            attribute_array.splice(index, 1);
         }
-        
+
         var html = "";
         attribute_array.forEach(function (item) {
             html += '<div id="product-attribute'+item+'">\
                         <i class="fa fa-minus-circle"></i> '+$("#attribute-"+item).data("label")+'\
                         <input type="hidden" name="attribute[]" value="'+item+'">\
                     </div>';
-        }); 
+        });
         $("#product-attribute").html(html);
-        
+
     });
-    
+
     $("#status").change(function () {
         if ($(this).is(":checked")) {
             $(".active_status").text("Active");
@@ -357,7 +357,7 @@
             $(".active_status").text("Inactive");
         }
     });
-    
+
     $("#add_btn").click(function (){
         $(".error_msg").html('');
         var data = new FormData($('#add_form')[0]);
@@ -380,10 +380,10 @@
                 $("#success_msg").show();
                 window.location.href = "{{ url('products')}}";
             }
-            
+
         }).fail(function(data, textStatus, jqXHR) {
             var json_data = JSON.parse(data.responseText);
-            
+
             $.each(json_data.errors, function(key, value){
                 $("#error_msg").html("<div class='alert alert-default-danger' role='alert'>\
                                         " + value + "\
@@ -394,14 +394,14 @@
             });
         });
     });
-    
+
     $("#on_sale").click(function () {
         $("#sale_price_div").hide();
         if($('#on_sale').prop('checked')) {
             $("#sale_price_div").show();
         }
     });
-    
+
 //    SummerNote Image
 </script>
 @endsection
