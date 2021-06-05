@@ -34,24 +34,8 @@ class ProductController extends Controller {
         $all_category = Category::all();
         $data['all_brand'] = Brand::all();
         $data['all_unit'] = Unit::all();
-
         $data['all_attribute_with_group'] = AttributeGroup::with('attributes')->get();
-
-
-        $category = array(
-            'categories' => array(),
-            'parent_cats' => array()
-        );
-
-        foreach ($all_category as $row) {
-            $category['categories'][$row->id] = $row;
-            $category['parent_cats'][$row->parent_id][] = $row->id;
-        }
-
-//        echo '<pre>';print_r($data['all_attribute_with_group']);die;
-        $category_list = "<ul class=''><li class='form-control-label text-right main-category'>Main category</li>" . $this->buildCategory('', $category) . "</ul>";
-
-        $data['category_list'] = $category_list;
+        $data['category_list'] = Category::all();
         return view('product.add_product', $data);
     }
 
@@ -118,10 +102,10 @@ class ProductController extends Controller {
          $request->validate([
             'name' => 'required|unique:products',
             'main_category' => 'required',
+            'brand' => 'required',
         ]);
 
         $response['status'] = 'Error';
-
         $product->name = $request->name;
         $product->brand_id = $request->brand;
 //        $product->vendor_id = $request->vendor;
@@ -149,15 +133,19 @@ class ProductController extends Controller {
 
         $product->save();
 
-        $data_category = array();
-        if($request->category) {
-            foreach ($request->category as $value) {
-                $data_category['product_id'] = $product->id;
-                $data_category['category_id'] = $value;
-                //$product->categories()->attach($data_category);
-                DB::table('products_categories')->insert($data_category);
-            }
-        }
+         $data_category['product_id'] = $product->id;
+         $data_category['category_id'] = $product->main_category;
+         DB::table('products_categories')->insert($data_category);
+
+//        $data_category = array();
+//        if($request->category) {
+//            foreach ($request->category as $value) {
+//                $data_category['product_id'] = $product->id;
+//                $data_category['category_id'] = $value;
+//                //$product->categories()->attach($data_category);
+//                DB::table('products_categories')->insert($data_category);
+//            }
+//        }
 
         $data_attribute = array();
         if($request->attribute) {

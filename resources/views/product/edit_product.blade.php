@@ -101,7 +101,7 @@
                                         </div>
                                     </div>
                                     <div class="col-md-4">
-                                        <div class="form-group">
+                                        <div class="form-group" style="display: none">
                                             <label>Brand</label>
                                             <select class="form-control select2" name="brand">
                                                 <option value="">Choose Brand</option>
@@ -112,15 +112,15 @@
                                             @endforeach
                                         </select>
                                     </div>
-                                    <div class="form-group">
+                                    <div class="form-group" style="display: none">
                                         <label>Price</label>
                                         <input type="text" name="price" value="{{$product_data->price}}" class="form-control">
                                     </div>
-                                    <div class="form-group">
+                                    <div class="form-group" style="display: none">
                                         <label>Quantity</label>
                                         <input type="text" name="quantity" value="{{$product_data->quantity}}" class="form-control">
                                     </div>
-                                    <div class="card border-primary mb-3" style="max-width: 18rem;">
+                                    <div class="card border-primary mb-3" style="max-width: 18rem;margin-top: 31px">
                                         <div class="card-header">Categories</div>
                                         <div class="card-body text-primary">
                                             <?php echo $category_list; ?>

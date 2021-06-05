@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 use App\Http\Controllers\Controller;
 
+use App\Models\Brand;
 use Illuminate\Http\Request;
 use App\Models\Category;
 use Illuminate\Support\Facades\DB;
@@ -20,7 +21,8 @@ class CategoryController extends Controller {
 
     public function create() {
         $all_category = Category::all();
-        return view('category.add_category', compact('all_category'));
+        $all_brand = Brand::all();
+        return view('category.add_category', compact('all_category','all_brand'));
     }
 
     public function store(Request $request) {
@@ -28,43 +30,45 @@ class CategoryController extends Controller {
 
         $request->validate([
             'category_name' => 'required|max:255',
-            'category_cover_image' => 'required|file|image|mimes:jpg,jpeg,png,gif,webp|max:2048',
-            'category_menu_image' => 'required|file|image|mimes:jpg,jpeg,png,gif,webp|max:2048'
+            'brand' => 'required|max:255',
+            'category_cover_image' => 'file|image|mimes:jpg,jpeg,png,gif,webp|max:2048',
+            'category_menu_image' => 'required|file|image|mimes:jpg,jpeg,png,gif,webp|max:1048'
         ]);
 
         $response['status'] = 'Error';
-        
+
         $category->category_name = $request->category_name;
+        $category->brand_id = $request->brand;
         $category->slug = $request->category_slug;
         $category->parent_id = $request->parent_id;
-        
-        $cover_photo = $request->file('category_cover_image')->store('category/category_cover');
+
+//        $cover_photo = $request->file('category_cover_image')->store('category/category_cover');
         $menu_photo = $request->file('category_menu_image')->store('category/category_menu');
-        
-        $category->category_cover_image = $cover_photo;
+
+//        $category->category_cover_image = $cover_photo;
         $category->category_menu_image = $menu_photo;
-        
+
 //     Start   Category Thumbnail
-        $file = $request->file('category_cover_image')->hashName();
-        $resize = Image::make($request->file('category_cover_image'))->resize(600, 200, function ($constraint) {
-                    
-                })->encode('jpg');
+//        $file = $request->file('category_cover_image')->hashName();
+//        $resize = Image::make($request->file('category_cover_image'))->resize(600, 200, function ($constraint) {
+//
+//                })->encode('jpg');
 
         // Put image to storage
-        Storage::put("category/category_thumbnail/{$file}", $resize->__toString());
+//        Storage::put("category/category_thumbnail/{$file}", $resize->__toString());
 //     End   Category Thumbnail
-        
-        $category->category_thumbnail = 'category_thumbnail/' . $file;
+
+//        $category->category_thumbnail = 'category_thumbnail/' . $file;
         $category->category_description = $request->category_description;
         $category->meta_title = $request->category_meta_title;
         $category->meta_description = $request->category_meta_description;
         $category->meta_keywords = $request->category_meta_keywords;
         $category->save();
-        
+
         if(isset($category->id)) {
             $response['status'] = 'Success';
         }
-        
+
         echo json_encode($response);
     }
 
@@ -96,12 +100,12 @@ class CategoryController extends Controller {
             }
             $cover_photo = $request->file('category_cover_image')->store('category_cover');
             $category->category_cover_image = $cover_photo;
-            
+
             $file = $request->file('category_cover_image')->hashName();
             $resize = Image::make($request->file('category_cover_image'))->resize(600, 200, function ($constraint) {
 
                     })->encode('jpg');
-            
+
             Storage::put("category/category_thumbnail/{$file}", $resize->__toString());
             $category->category_thumbnail = 'category_thumbnail/' . $file;
         }
@@ -117,9 +121,9 @@ class CategoryController extends Controller {
         $category->meta_title = $request->category_meta_title;
         $category->meta_description = $request->category_meta_description;
         $category->meta_keywords = $request->category_meta_keywords;
-        
+
         $category->save();
-        
+
         echo json_encode("Done");
     }
 

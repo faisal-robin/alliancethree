@@ -104,7 +104,7 @@
             </li>
             @endif
             <li class="nav-item">
-              <a href="categories" class="nav-link @if(request()->is(['categories'])) active @endif">
+              <a href="{{url('categories')}}" class="nav-link @if(request()->is(['categories'])) active @endif">
                 <i class="far fa-circle nav-icon"></i>
                 <p>Category</p>
               </a>
@@ -117,12 +117,12 @@
 {{--                </p>--}}
 {{--              </a>--}}
 {{--            </li>--}}
-            <li class="nav-item">
-              <a href="units" class="nav-link @if(request()->is(['units'])) active @endif">
-                <i class="far fa-circle nav-icon"></i>
-                <p>Unit</p>
-              </a>
-            </li>
+{{--            <li class="nav-item">--}}
+{{--              <a href="units" class="nav-link @if(request()->is(['units'])) active @endif">--}}
+{{--                <i class="far fa-circle nav-icon"></i>--}}
+{{--                <p>Unit</p>--}}
+{{--              </a>--}}
+{{--            </li>--}}
           </ul>
         </li>
      @endif

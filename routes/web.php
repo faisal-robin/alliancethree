@@ -14,7 +14,7 @@ use Illuminate\Support\Facades\Route;
 */
 Route::get('/', 'Front\FrontController@index');
 Route::get('about-us', 'Front\FrontController@about_us');
-Route::get('product-list', 'Front\FrontController@product_list');
+Route::get('product-list/{any}', 'Front\FrontController@product_list');
 Route::get('contact', 'Front\FrontController@contact');
 
 Route::get('/admin', function () {

@@ -43,92 +43,55 @@
 			</div>
 		</section>
 
+   @foreach($brands as $brand)
     <section class="ftco-section">
     	<div class="container">
-				<div class="row justify-content-center mb-3 pb-3">
-          <div class="col-md-12 heading-section text-center ftco-animate">
-              <span><img  style="height: 100px;" src="{{ asset('public/front_asset/images/logo-3.png')}}"></span>
-          	<span class="subheading">Featured Products</span>
-            <h2 class="mb-4">Our Products</h2>
-            <p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia</p>
-          </div>
-        </div>
+            <div class="row justify-content-center">
+                <div class="col-md-12 heading-section text-center ftco-animate text-center">
+                    <span><img  style="height: 100px;" src="{{ url('storage/app/'.$brand->brand_image) }}"></span>
+                    <span class="subheading">Featured Products</span>
+                </div>
+            </div>
     	</div>
+        <div class="container">
+            <div class="row justify-content-center">
+                @foreach($brand->categories as $cat)
+                    <div class="text-center ml-3">
+                      <img  class="cat-icon cat-active" src="{{ url('storage/app/'.$cat->category_menu_image) }}">
+                      <p>{{$cat->category_name}}</p>
+                    </div>
+                @endforeach()
+            </div>
+        </div>
     	<div class="container">
     		<div class="row">
-    			<div class="col-md-6 col-lg-3 ftco-animate">
-    				<div class="product">
-    					<a href="#" class="img-prod"><img class="img-fluid" src="{{ asset('public/front_asset/images/product-13.jpg') }}" alt="Colorlib Template">
-{{--    						<span class="status">30%</span>--}}
-    						<div class="overlay"></div>
-    					</a>
-    					<div class="text py-3 pb-4 px-3 text-center">
-    						<h3><a href="#">Potato</a></h3>
-	    					<div class="bottom-area d-flex px-3">
-	    						<div class="m-auto d-flex">
-	    							<a href="#" class="add-to-cart d-flex justify-content-center align-items-center text-center">
-	    								<span><i class="ion-ios-menu"></i></span>
-	    							</a>
-    							</div>
-    						</div>
-    					</div>
-    				</div>
-    			</div>
-    			<div class="col-md-6 col-lg-3 ftco-animate">
-    				<div class="product">
-    					<a href="#" class="img-prod"><img style="margin-left: 10%;" class="img-fluid" src="{{ asset('public/front_asset/images/product-14.jpg') }}" alt="Colorlib Template">
-    						<div class="overlay"></div>
-    					</a>
-    					<div class="text py-3 pb-4 px-3 text-center">
-    						<h3><a href="#">Taro root</a></h3>
-    						<div class="bottom-area d-flex px-3">
-	    						<div class="m-auto d-flex">
-	    							<a href="#" class="add-to-cart d-flex justify-content-center align-items-center text-center">
-	    								<span><i class="ion-ios-menu"></i></span>
-	    							</a>
-    							</div>
-    						</div>
-    					</div>
-    				</div>
-    			</div>
-    			<div class="col-md-6 col-lg-3 ftco-animate">
-    				<div class="product">
-    					<a href="#" class="img-prod"><img style="margin-left: 10%;" class="img-fluid" src="{{ asset('public/front_asset/images/product-15.jpg') }}" alt="Colorlib Template">
-	    					<div class="overlay"></div>
-	    				</a>
-    					<div class="text py-3 pb-4 px-3 text-center">
-    						<h3><a href="#">Taro stolon</a></h3>
-    						<div class="bottom-area d-flex px-3">
-	    						<div class="m-auto d-flex">
-	    							<a href="#" class="add-to-cart d-flex justify-content-center align-items-center text-center">
-	    								<span><i class="ion-ios-menu"></i></span>
-	    							</a>
-    							</div>
-    						</div>
-    					</div>
-    				</div>
-    			</div>
-    			<div class="col-md-6 col-lg-3 ftco-animate">
-    				<div class="product">
-    					<a href="#" class="img-prod"><img class="img-fluid" src="{{ asset('public/front_asset/images/product-5.jpg') }}" alt="Colorlib Template">
-    						<div class="overlay"></div>
-    					</a>
-    					<div class="text py-3 pb-4 px-3 text-center">
-    						<h3><a href="#">Tomato</a></h3>
-    						<div class="bottom-area d-flex px-3">
-	    						<div class="m-auto d-flex">
-	    							<a href="#" class="add-to-cart d-flex justify-content-center align-items-center text-center">
-	    								<span><i class="ion-ios-menu"></i></span>
-	    							</a>
-    							</div>
-    						</div>
-    					</div>
-    				</div>
-    			</div>
+                @foreach($brand->categories as $cat_product)
+                        @foreach($cat_product->cat_products as $porduct)
+                                <div class="col-md-6 col-lg-3 ftco-animate">
+                                <div class="product">
+                                    @foreach($porduct->product_images as $img)
+                                        <a href="#" class="img-prod"><img style="margin-left: 10%" class="img-fluid" src="{{ url('storage/app/'.$img->images_name) }}" alt="Product Image">
+                                            <div class="overlay"></div>
+                                        </a>
+                                    @endforeach
+                                    <div class="text py-3 pb-4 px-3 text-center">
+                                        <h3><a href="#">{{$porduct->name}}</a></h3>
+                                        <div class="bottom-area d-flex px-3">
+                                            <div class="m-auto d-flex">
+                                                <a href="#" class="add-to-cart d-flex justify-content-center align-items-center text-center">
+                                                    <span><i class="ion-ios-menu"></i></span>
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        @endforeach
+                @endforeach
     		</div>
     	</div>
     </section>
-
+   @endforeach
     <hr>
 
 		<section class="ftco-section ftco-partner">

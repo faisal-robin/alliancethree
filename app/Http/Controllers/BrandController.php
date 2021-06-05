@@ -81,7 +81,7 @@ class BrandController extends Controller {
      */
     public function update(Request $request, $id) {
         $request->validate([
-            'brand_name' => 'required|max:255|unique:brands',
+            'brand_name' => 'required|max:255',
 //            'brand_image' => 'required|file|image|mimes:jpeg,png,gif,webp|max:2048'
         ]);
         $brand = Brand::find($id);
@@ -112,7 +112,7 @@ class BrandController extends Controller {
         }
         $data->delete();
         return redirect('brands');
-       
+
     }
 
 }

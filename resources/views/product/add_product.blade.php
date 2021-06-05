@@ -127,15 +127,15 @@
                                                 @endforeach
                                             </select>
                                         </div>
-                                        <div class="form-group">
+                                        <div class="form-group hide" style="display: none">
                                             <label>Price</label>
                                             <input type="text" name="price" class="form-control">
                                         </div>
-                                        <div class="form-group">
+                                        <div class="form-group hide" style="display: none">
                                             <label>Quantity</label>
                                             <input type="text" name="quantity" class="form-control">
                                         </div>
-                                        <div class="form-group">
+                                        <div class="form-group hide" style="display: none">
                                             <label>Unit</label>
                                             <select class="form-control select2" name="unit">
                                                 <option value="">Choose Unit</option>
@@ -146,12 +146,23 @@
                                                 @endforeach
                                             </select>
                                         </div>
-                                        <div class="card border-primary mb-3">
-                                            <div class="card-header">Categories</div>
-                                            <div class="card-body text-primary" style="padding-left: 0px;">
-                                                <?php echo $category_list;?>
-                                            </div>
+                                        <div class="form-group">
+                                            <label>Categories</label>
+                                            <select class="form-control select2" name="main_category">
+                                                <option value="">Choose Category</option>
+                                                @foreach($category_list as $row)
+                                                <option value="{{ $row->id }}">
+                                                    {{ $row->category_name }}
+                                                </option>
+                                                @endforeach
+                                            </select>
                                         </div>
+{{--                                        <div class="card border-primary mb-3" style="margin-top: 31px">--}}
+{{--                                            <div class="card-header">Categories</div>--}}
+{{--                                            <div class="card-body text-primary" style="padding-left: 0px;">--}}
+{{--                                                <?php echo $category_list;?>--}}
+{{--                                            </div>--}}
+{{--                                        </div>--}}
                                     </div>
                                 </div>
                             </div>

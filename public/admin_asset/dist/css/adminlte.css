@@ -31218,4 +31218,8 @@ a.text-muted:hover {
 [class*="accent-"] a.btn-dark {
   color: #ffffff;
 }
+
+.hide{
+    display: none;
+}
 /*# sourceMappingURL=adminlte.css.map */

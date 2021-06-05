@@ -3,7 +3,9 @@
 namespace App\Http\Controllers\Front;
 
 use App\Http\Controllers\Controller;
+use App\Models\Brand;
 use App\Models\Slider;
+use App\Models\Category;
 use Illuminate\Http\Request;
 //use App\Mail\QuotationEmail;
 use App\Models\Company;
@@ -21,15 +23,19 @@ class FrontController extends Controller
     public function index()
     {
         $sliders = Slider::all();
-        return view('front/index',compact('sliders'));
+//        $categories = Category::all();
+        $brands = Brand::all();
+
+        return view('front/index',compact('sliders','brands'));
     }
 
     public function about_us(){
         return view('front/about_us');
     }
 
-    public function product_list(){
-        return view('front/products');
+    public function product_list($id){
+        $brands = Brand::where('id',$id)->get();
+        return view('front/products',compact('brands'));
     }
 
     public function contact(){

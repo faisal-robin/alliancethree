@@ -31,7 +31,15 @@
 	        <ul class="navbar-nav ml-auto">
 	          <li class="nav-item active"><a href="{{url('/')}}" class="nav-link">Home</a></li>
 	          <li class="nav-item"><a href="{{url('about-us')}}" class="nav-link">About</a></li>
-	          <li class="nav-item"><a href="{{url('product-list')}}" class="nav-link">Products</a></li>
+              <li class="nav-item dropdown">
+                  <a class="nav-link dropdown-toggle" href="#" id="dropdown04" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Products</a>
+                  <div class="dropdown-menu" aria-labelledby="dropdown04">
+                      @foreach($all_brand as $brand)
+                        <a class="dropdown-item" href="{{url('product-list/'.$brand->id)}}">{{$brand->brand_name}}</a>
+                      @endforeach
+                  </div>
+            </li>
+{{--	          <li class="nav-item"><a href="{{url('product-list')}}" class="nav-link">Products</a></li>--}}
               <li class="nav-item"><a href="{{url('contact')}}" class="nav-link">Contact</a></li>
 	        </ul>
 	      </div>
