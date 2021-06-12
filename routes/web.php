@@ -15,7 +15,10 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', 'Front\FrontController@index');
 Route::get('about-us', 'Front\FrontController@about_us');
 Route::get('product-list/{any}', 'Front\FrontController@product_list');
+Route::get('product-details/{any}', 'Front\FrontController@product_details');
+Route::get('product-quotation', 'Front\FrontController@product_quotation');
 Route::get('contact', 'Front\FrontController@contact');
+Route::post('quotation_request', 'Front\FrontController@quotation_request');
 
 Route::get('/admin', function () {
     return view('auth/login');

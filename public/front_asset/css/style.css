@@ -8657,7 +8657,8 @@ h1, h2, h3, h4, h5,
   -webkit-transition: all 0.3s ease;
   -ms-transition: all 0.3s ease;
   transition: all 0.3s ease;
-  border: 1px solid #f0f0f0; }
+  /*border: 1px solid #f0f0f0;*/
+}
   @media (max-width: 991.98px) {
     .product {
       margin-bottom: 30px; } }
@@ -10020,3 +10021,23 @@ textarea.form-control {
 .cat-active{
     border: 3px solid #82ae46;
 }
+.product-name{
+    font-weight: 800;
+    font-size: 25px;
+    font-family: "Poppins", Arial, sans-serif;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    color: #82ae46 !important;
+}
+
+.theme-background{
+    background-color: #82ae46 !important;
+}
+.theme-color{
+   color: #000000 !important;
+}
+
+#product_table tbody  tr td{
+    padding: 15px;
+}
+

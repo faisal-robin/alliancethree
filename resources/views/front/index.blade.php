@@ -13,7 +13,7 @@
                     <div class="col-md-12 ftco-animate text-center">
                       <h1 class="mb-2">{{$slider->slider_title}}</h1>
                       <h2 class="subheading mb-4">{{$slider->slider_text}}</h2>
-                      <p><a href="#" class="btn btn-primary">Get Qout</a></p>
+                      <p><a href="{{url('product-quotation')}}" class="btn btn-primary">Get Quote</a></p>
                     </div>
 
                   </div>
@@ -70,15 +70,15 @@
                                 <div class="col-md-6 col-lg-3 ftco-animate">
                                 <div class="product">
                                     @foreach($porduct->product_images as $img)
-                                        <a href="#" class="img-prod"><img style="margin-left: 10%" class="img-fluid" src="{{ url('storage/app/'.$img->images_name) }}" alt="Product Image">
+                                        <a href="{{url('product-details/'.$porduct->slug)}}" class="img-prod"><img style="margin-left: 10%" class="img-fluid" src="{{ url('storage/app/'.$img->images_name) }}" alt="Product Image">
                                             <div class="overlay"></div>
                                         </a>
                                     @endforeach
                                     <div class="text py-3 pb-4 px-3 text-center">
-                                        <h3><a href="#">{{$porduct->name}}</a></h3>
+                                        <h3><a href="{{url('product-details/'.$porduct->slug)}}">{{$porduct->name}}</a></h3>
                                         <div class="bottom-area d-flex px-3">
                                             <div class="m-auto d-flex">
-                                                <a href="#" class="add-to-cart d-flex justify-content-center align-items-center text-center">
+                                                <a href="{{url('product-details/'.$porduct->slug)}}" class="add-to-cart d-flex justify-content-center align-items-center text-center">
                                                     <span><i class="ion-ios-menu"></i></span>
                                                 </a>
                                             </div>

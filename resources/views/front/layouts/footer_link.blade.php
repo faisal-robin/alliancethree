@@ -15,9 +15,14 @@
   <script src="{{ asset('public/front_asset/js/jquery.animateNumber.min.js') }}"></script>
   <script src="{{ asset('public/front_asset/js/bootstrap-datepicker.js') }}"></script>
   <script src="{{ asset('public/front_asset/js/scrollax.min.js') }}"></script>
+  <!-- Select2 -->
+  <script src="{{ asset('public/front_asset/select2/js/select2.full.min.js') }}"></script>
+  <!-- toastr -->
+  <script src="{{ asset('public/front_asset/toastr/toastr.min.js') }}"></script>
+
   <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBVWaKrjvy3MaE7SQ74_uJiULgl1JY0H2s&sensor=false"></script>
   <script src="{{ asset('public/front_asset/js/google-map.js') }}"></script>
   <script src="{{ asset('public/front_asset/js/main.js') }}"></script>
-
+  @yield('script')
   </body>
 </html>

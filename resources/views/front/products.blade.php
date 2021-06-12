@@ -38,7 +38,7 @@
                                 <div class="col-md-6 col-lg-3 ftco-animate">
                                 <div class="product">
                                     @foreach($porduct->product_images as $img)
-                                        <a href="#" class="img-prod"><img style="margin-left: 10%" class="img-fluid" src="{{ url('storage/app/'.$img->images_name) }}" alt="Product Image">
+                                        <a href="{{url('product-details/'.$porduct->slug)}}" class="img-prod"><img style="margin-left: 10%" class="img-fluid" src="{{ url('storage/app/'.$img->images_name) }}" alt="Product Image">
                                             <div class="overlay"></div>
                                         </a>
                                     @endforeach
@@ -46,7 +46,7 @@
                                         <h3><a href="#">{{$porduct->name}}</a></h3>
                                         <div class="bottom-area d-flex px-3">
                                             <div class="m-auto d-flex">
-                                                <a href="#" class="add-to-cart d-flex justify-content-center align-items-center text-center">
+                                                <a href="{{url('product-details/'.$porduct->slug)}}" class="add-to-cart d-flex justify-content-center align-items-center text-center">
                                                     <span><i class="ion-ios-menu"></i></span>
                                                 </a>
                                             </div>
