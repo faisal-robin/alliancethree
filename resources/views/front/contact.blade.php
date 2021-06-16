@@ -57,7 +57,7 @@
           </div>
 
           <div class="col-md-6 d-flex">
-          	<div id="map" class="bg-white"></div>
+          	<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3689.963281862617!2d91.822712314362!3d22.355015246557063!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x30acd95c9e7654b1%3A0xe74294564d792ccc!2sJumairah%20Raisa!5e0!3m2!1sen!2sbd!4v1623779971960!5m2!1sen!2sbd" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
           </div>
         </div>
       </div>

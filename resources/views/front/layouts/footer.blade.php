@@ -33,8 +33,8 @@
               <div class="d-flex">
 	              <ul class="list-unstyled mr-l-5 pr-l-3 mr-4">
 	                <li><a href="{{url('contact')}}" class="py-2 d-block">Contact</a></li>
-	                <li><a href="#" class="py-2 d-block">Terms &amp; Conditions</a></li>
-	                <li><a href="#" class="py-2 d-block">Privacy Policy</a></li>
+	                <li><a href="{{url('page/about-halda')}}" class="py-2 d-block">Halda</a></li>
+	                <li><a href="{{url('page/about-jenwear')}}" class="py-2 d-block">Jenwear</a></li>
 	              </ul>
 	            </div>
             </div>

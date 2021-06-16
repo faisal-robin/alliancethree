@@ -19,6 +19,8 @@ Route::get('product-details/{any}', 'Front\FrontController@product_details');
 Route::get('product-quotation', 'Front\FrontController@product_quotation');
 Route::get('contact', 'Front\FrontController@contact');
 Route::post('quotation_request', 'Front\FrontController@quotation_request');
+Route::get('page/{any}', 'Front\FrontController@page');
+Route::get('pdf', 'Front\FrontController@pdf');
 
 Route::get('/admin', function () {
     return view('auth/login');
@@ -60,5 +62,6 @@ Route::group(['middleware' => 'auth'], function () {
     //Role & Permission
     Route::resource('roles', 'RoleController');
     Route::resource('permissions', 'PermissionController');
+    Route::resource('pages', 'PageController');
 });
 

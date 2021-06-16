@@ -20,7 +20,7 @@ class Quotation extends Model
      */
     protected $fillable = ['quotation_no','first_name', 'last_name', 'address', 'email', 'country_id', 'city', 'postcode', 'phone','description'];
 
-    public function quotation_item() {
+    public function quotation_items() {
         return $this->hasMany(QuotationItem::class, 'quotation_id','id');
     }
 

@@ -12,9 +12,11 @@ use App\Models\Product;
 use Illuminate\Http\Request;
 use App\Mail\QuotationEmail;
 use App\Models\Company;
+use App\Models\Page;
 use Mail;
 use DB;
 use Session;
+use PDF;
 
 class FrontController extends Controller
 {
@@ -26,7 +28,7 @@ class FrontController extends Controller
     public function index()
     {
         $sliders = Slider::all();
-//        $categories = Category::all();
+//      $categories = Category::all();
         $brands = Brand::all();
 
         return view('front/index',compact('sliders','brands'));
@@ -54,6 +56,12 @@ class FrontController extends Controller
 
     public function contact(){
         return view('front/contact');
+    }
+
+    public function page($page_tag){
+        $page_info = Page::where('page_tag',$page_tag)->first();
+//        dd($page_info);
+        return view('front/page',compact('page_info'));
     }
 
     public function quotation_request(Request $request){
@@ -94,6 +102,13 @@ class FrontController extends Controller
               return response(['status' => 'error', 'msg' => 'Internal Server Error. Please Try Again', 'data' => $e]);
         }
 
+    }
+
+    public function pdf(){
+        $quotation_info = Quotation::find(1);
+//        dd($data['quotation']);
+        $pdf = PDF::loadView('front.pdf', compact('quotation_info'));
+        return $pdf->stream('document.pdf');
     }
 
 
