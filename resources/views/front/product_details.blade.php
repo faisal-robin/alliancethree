@@ -13,11 +13,23 @@
     <section class="ftco-section">
     	<div class="container">
     		<div class="row">
-                @foreach($product_info->product_images as $img)
-    			<div class="col-lg-6 mb-5 ftco-animate">
-    				<a href="{{ url('storage/app/'.$img->images_name) }}" class="image-popup"><img style="height: 65%;" src="{{ url('storage/app/'.$img->images_name) }}" class="img-fluid" alt="Colorlib Template"></a>
-    			</div>
-                @endforeach
+
+    			<div class="col-lg-6 mb-5">
+                    <div class="grid images_3_of_2">
+					<div class="flexslider">
+
+						<ul class="slides">
+                            @foreach($product_info->product_images as $img)
+                                <li data-thumb="{{ url('storage/app/'.$img->images_name) }}">
+                                    <div class="thumb-image"> <img src="{{ url('storage/app/'.$img->images_name) }}" data-imagezoom="true" class="img-responsive"> </div>
+                                </li>
+                            @endforeach
+						</ul>
+						<div class="clearfix"></div>
+					</div>
+				</div>
+                </div>
+
     			<div class="col-lg-6 product-details pl-md-5 ftco-animate">
     				<h1  class="product-name">{{$product_info->name}}</h1>
     				<p>{{$product_info->description}}</p>
@@ -41,11 +53,9 @@
                 @foreach($related_product as $product)
     			    <div class="col-md-6 col-lg-3 ftco-animate">
     				<div class="product">
-    					@foreach($product->product_images as $img)
-                            <a href="#" class="img-prod"><img style="margin-left: 10%" class="img-fluid" src="{{ url('storage/app/'.$img->images_name) }}" alt="Product Image">
+                            <a href="{{url('product-details/'.$product->slug)}}" class="img-prod"><img style="margin-left: 10%" class="img-fluid" src="{{ url('storage/app/'.$product->product_images->first()->images_name) }}" alt="Product Image">
                                 <div class="overlay"></div>
                             </a>
-                        @endforeach
     					<div class="text py-3 pb-4 px-3 text-center">
     						<h3><a href="{{url('product-details/'.$product->slug)}}">{{$product->name}}</a></h3>
 	    					<div class="bottom-area d-flex px-3">
@@ -64,3 +74,12 @@
     </section>
 @include('front.layouts.footer')
 @include('front.layouts.footer_link')
+<script>
+    // Can also be used with $(document).ready()
+    $(window).load(function () {
+        $('.flexslider').flexslider({
+            animation: "slide",
+            controlNav: "thumbnails"
+        });
+    });
+</script>

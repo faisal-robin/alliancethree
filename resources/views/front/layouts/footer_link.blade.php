@@ -15,6 +15,8 @@
   <script src="{{ asset('public/front_asset/js/jquery.animateNumber.min.js') }}"></script>
   <script src="{{ asset('public/front_asset/js/bootstrap-datepicker.js') }}"></script>
   <script src="{{ asset('public/front_asset/js/scrollax.min.js') }}"></script>
+  <!-- flexslider -->
+  <script src="{{ asset('public/front_asset/flexslider/jquery.flexslider.js') }}"></script>
   <!-- Select2 -->
   <script src="{{ asset('public/front_asset/select2/js/select2.full.min.js') }}"></script>
   <!-- toastr -->

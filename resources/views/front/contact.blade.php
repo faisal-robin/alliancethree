@@ -31,26 +31,30 @@
           	<div class="info bg-white p-4 text-center">
                 <span style="font-size: 40px;color:#82ae46" class="icon icon-envelope"></span>
 	            <p>{{$company_info->email}}</p>
+	            <p>{{$company_info->email_2}}</p>
 	          </div>
           </div>
         </div>
         <div class="row block-9">
           <div class="col-md-6 order-md-last d-flex">
-            <form action="#" class="bg-white p-5 contact-form">
+            <form id="add_form" action="#" class="bg-white p-5 contact-form">
               <div class="form-group">
-                <input type="text" class="form-control" placeholder="Your Name">
+                <input id="name" name="name" type="text" class="form-control" placeholder="Your Name">
               </div>
               <div class="form-group">
-                <input type="text" class="form-control" placeholder="Your Email">
+                <input id="phone" name="phone" type="text" class="form-control" placeholder="Your Phone">
               </div>
               <div class="form-group">
-                <input type="text" class="form-control" placeholder="Subject">
+                <input id="email" name="email" type="text" class="form-control" placeholder="Your Email">
               </div>
               <div class="form-group">
-                <textarea name="" id="" cols="30" rows="7" class="form-control" placeholder="Message"></textarea>
+                <input id="subject" name="subject" type="text" class="form-control" placeholder="Subject">
               </div>
               <div class="form-group">
-                <input type="submit" value="Send Message" class="btn btn-primary py-3 px-5">
+                <textarea name="message" id="message" cols="30" rows="7" class="form-control" placeholder="Message"></textarea>
+              </div>
+              <div class="form-group">
+                <input id="add_btn" type="button" value="Send Message" class="btn btn-primary py-3 px-5">
               </div>
             </form>
 
@@ -64,3 +68,32 @@
     </section>
 @include('front.layouts.footer')
 @include('front.layouts.footer_link')
+
+<script>
+    $("#add_btn").click(function (){
+        $(".error_msg").html('');
+        var data = new FormData($('#add_form')[0]);
+        $.ajax({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token-home"]').attr('content')
+            },
+            method: "POST",
+            url: "{{ url('contact-details') }}",
+            data: data,
+            cache: false,
+            contentType: false,
+            processData: false,
+            success: function (data, textStatus, jqXHR) {
+
+            }
+        }).done(function() {
+            $("#success_msg").html("Message Send Successfully");
+            location.reload();
+        }).fail(function(data, textStatus, jqXHR) {
+            var json_data = JSON.parse(data.responseText);
+            $.each(json_data.errors, function(key, value){
+                $("#" + key).after("<span class='error_msg' style='color: red;font-weigh: 600'>" + value + "</span>");
+            });
+        });
+    });
+</script>

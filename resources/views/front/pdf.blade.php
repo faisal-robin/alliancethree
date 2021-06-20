@@ -53,15 +53,14 @@
     <table width="100%" style="font-family: sans-serif;" cellpadding="10">
         <tr>
             <td width="49%" style="border: 0.1mm solid #fff;">
-                <img src="{{asset('public')}}/frontend_asset/img/launch-ticket.png" width="264" height="110" alt="Logo" align="left" border="0">
+                <img src="{{asset('public')}}/front_asset/images/logo-2.png" style="height: 100px" alt="Logo" align="left" border="0">
             </td>
             <td width="2%">&nbsp;</td>
             <td style="text-align: left;" width="49%" style="border: 0.1mm solid #fff; text-align: right;">
-                <p><b>Launch Ticket</b></p>
-                <p>House 24/A CWN(B),Road 36 Gulshan 2</p>
-                <p>Dhaka, 1212</p>
-                <p>+8809638336699</p>
-                <p>ict@m360ict.com</p>
+                <p><b>{{$company_info->name}}</b></p>
+                <p>{{$company_info->address_1}}</p>
+                <p>{{$company_info->phone_1}}</p>
+                <p>{{$company_info->email}}</p>
             </td>
         </tr>
     </table>
@@ -69,9 +68,9 @@
 
     <table width="100%" style="font-family: sans-serif;" cellpadding="6">
         <tr>
-            <td width="49%" style="background-color: #f04e23; color:#fff">Invoice Info</td>
+            <td width="49%" style="background-color: #82ae46; color:#fff">Invoice Info</td>
             <!-- <td width="1%"></td> -->
-            <td width="50%" style="background-color: #f04e23; color:#fff">Customer Info</td>
+            <td width="50%" style="background-color: #82ae46; color:#fff">Customer Info</td>
         </tr>
     </table>
 
@@ -83,17 +82,21 @@
             </td>
             <td width="2%">&nbsp;</td>
             <td width="49%" style="color:#000">
-            <p><b>Name:</b> {{$quotation_info->first_name.''.$quotation_info->last_name}}</p>
-                <p><b>Name:</b></p>
-                <p><b>Name:</b></p>
-                <p><b>Name:</b></p>
+                <p><b>Name:</b> {{$quotation_info->first_name.' '.$quotation_info->last_name}}</p>
+                <p><b>Phone:</b>{{$quotation_info->phone}}</p>
+                <p><b>Email:</b>{{$quotation_info->email}}</p>
+                <p>
+                    <span><b>Country:</b>{{$quotation_info->country_id}}</span>
+                    <span><b>City:</b>{{$quotation_info->city}}</span>
+                    <span><b>Address:</b>{{$quotation_info->address}}</span>
+                </p>
             </td>
         </tr>
     </table>
 
     <table class="items" width="100%" style="font-size: 14px; border-collapse: collapse;" cellpadding="8">
         <thead style="background-color: #f04e23;color: #fff">
-            <tr style="background-color: #f04e23;color: #fff">
+            <tr style="background-color: #82ae46;color: #fff">
                 <td  width="15%" style="text-align: left;color: #fff"><strong>SL</strong></td>
                 <td width="45%" style="text-align: left;color: #fff"><strong>Product Name</strong></td>
                 <td width="20%" style="text-align: left;color: #fff"><strong>Product Qty</strong></td>
@@ -104,60 +107,12 @@
             @foreach($quotation_info->quotation_items as $quotation_item)
                 <tr style="background-color: #eee">
                     <td style="line-height: 20px;">1</td>
-                    <td style="line-height: 20px;">{{$quotation_item->product_id}}</td>
+                    <td style="line-height: 20px;">{{$quotation_item->product->name}}</td>
                     <td style="line-height: 20px;">{{$quotation_item->product_qty}}</td>
                 </tr>
             @endforeach
         </tbody>
     </table>
-
-    <table width="100%" style="font-family: sans-serif; font-size: 14px;" >
-        <tr>
-            <td>
-                <table width="60%" align="left" style="font-family: sans-serif; font-size: 14px;" >
-                    <tr>
-                        <td style="padding: 0px; line-height: 20px;">&nbsp;</td>
-                    </tr>
-                </table>
-                <table width="40%" align="right" style="font-family: sans-serif; font-size: 14px;" >
-                    <tr>
-                        <td style="border: 2px #eee solid; padding: 0px 8px; line-height: 20px;"><strong>Total Fare</strong></td>
-                        <td style="border: 2px #eee solid; padding: 0px 8px; line-height: 20px;">fdgdfgdf</td>
-                    </tr>
-                    <tr>
-                        <td style="border: 2px #eee solid; padding: 0px 8px; line-height: 20px;"><strong>Transaction ID</strong></td>
-                        <td style="border: 2px #eee solid; padding: 0px 8px; line-height: 20px;">dfgfdgdf</td>
-                    </tr>
-                    <tr>
-                        <td style="border: 2px #eee solid; padding: 0px 8px; line-height: 20px;"><strong>Status</strong></td>
-                        <td style="border: 2px #eee solid; padding: 0px 8px; line-height: 20px;">Complete</td>
-                    </tr>
-                </table>
-            </td>
-        </tr>
-    </table>
-
-    <table width="100%" style="font-family: sans-serif; font-size: 14px;" >
-
-        <tr>
-            <td>
-                <table width="100%" align="left" style="font-family: sans-serif; font-size: 14px;" >
-                    <tr>
-                        <td style="padding: 0px; line-height: 20px;">
-                            <b>Trams And Condition</b>
-                            <p>All price are excluding VAT & TAX</p>
-                            <p>Payment terms: 50% Must be paid with the work order.</p>
-                            <p>Kindly issue cheque in favour of 'M360 ICT'</p>
-                            <p>30 days prior notice must be given for service termination</p>
-                            <p>Client must provide Company Trade License,NID Copy as per BTRC Rules</p>
-
-                        </td>
-                    </tr>
-                </table>
-            </td>
-        </tr>
-
-    </table>
-
+    <p style="margin-top: 10px"><b>Note:</b> {{$quotation_info->description}}</p>
  </body>
  </html>

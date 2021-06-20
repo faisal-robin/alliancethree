@@ -5,8 +5,9 @@
             <div class="ftco-footer-widget mb-4">
               <h2 class="ftco-heading-2">
                   <a  href="{{url('/')}}">
-                      <img class="float-left"  style="height: 80px;width: 50%" src="{{ url('storage/app/'.$company_info->logo)}}">
+{{--                      <img class="float-left"  style="height: 80px;width: 50%" src="{{ url('storage/app/'.$company_info->logo)}}">--}}
                       <img class="float-left" style="height: 80px;width: 50%" src="{{ asset('public/front_asset/images/logo-3.png')}}">
+                      <img class="float-left" style="height: 80px;width: 50%" src="{{ asset('public/front_asset/images/logo-4.png')}}">
                   </a>
               </h2>
                 <p>Get e-mail updates about our latest shops and special offers</p>
@@ -23,7 +24,7 @@
               <ul class="list-unstyled">
                   <li><a href="{{url('/')}}" class="py-2 d-block">Home</a></li>
                   <li><a href="{{url('about-us')}}" class="py-2 d-block">About</a></li>
-                  <li><a href="{{url('product-list')}}" class="py-2 d-block">Products</a></li>
+                  <li><a href="{{url('product-list/4')}}" class="py-2 d-block">Products</a></li>
               </ul>
             </div>
           </div>

@@ -24,6 +24,9 @@
     <link rel="stylesheet" href="{{ asset('public/front_asset/css/bootstrap-datepicker.css') }}">
     <link rel="stylesheet" href="{{ asset('public/front_asset/css/jquery.timepicker.css') }}">
 
+      <!-- flexslider -->
+    <link rel="stylesheet" href="{{ asset('public/front_asset/flexslider/flexslider.css') }}">
+
     <!-- Select2 -->
     <link rel="stylesheet" href="{{ asset('public/front_asset/select2/css/select2.min.css') }}">
 {{--    <link rel="stylesheet" href="{{ asset('public/front_asset/select2-bootstrap4-theme/select2-bootstrap4.min.css') }}">--}}

@@ -53,25 +53,26 @@
     	</div>
         <div class="container">
             <div class="row justify-content-center">
-                @foreach($brand->categories as $cat)
+                @foreach($brand->categories as $key => $cat)
                     <div class="text-center ml-3">
-                      <img  class="cat-icon cat-active" src="{{ url('storage/app/'.$cat->category_menu_image) }}">
-                      <p>{{$cat->category_name}}</p>
+                      <img id="category_{{$cat->id}}" style="cursor: pointer"  class="cat-icon @if($key == 0) cat-active @endif  category_id cat_hover cat_brand{{$cat->brand_id}}" data-brand="{{$cat->brand_id}}" data-id="{{$cat->id}}" src="{{ url('storage/app/'.$cat->category_menu_image) }}">
+                      <p id="category_p{{$cat->id}}" style="cursor: pointer" class="@if($key == 0) color-active @endif cat_brandp{{$cat->brand_id}}">{{$cat->category_name}}</p>
                     </div>
                 @endforeach()
             </div>
         </div>
-    	<div class="container">
-    		<div class="row">
-                @foreach($brand->categories as $cat_product)
-                        @foreach($cat_product->cat_products as $porduct)
+
+        <div class="container">
+            <div id="brand_id{{$brand->id}}">
+                <div class="row">
+                    @foreach($brand->categories as $key => $cat_product)
+                        @if($key == 0)
+                            @foreach($cat_product->cat_products_limit as $porduct)
                                 <div class="col-md-6 col-lg-3 ftco-animate">
                                 <div class="product">
-                                    @foreach($porduct->product_images as $img)
-                                        <a href="{{url('product-details/'.$porduct->slug)}}" class="img-prod"><img style="margin-left: 10%" class="img-fluid" src="{{ url('storage/app/'.$img->images_name) }}" alt="Product Image">
+                                        <a href="{{url('product-details/'.$porduct->slug)}}" class="img-prod"><img style="margin-left: 10%" class="img-fluid" src="{{ url('storage/app/'.$porduct->product_images->first()->images_name) }}" alt="Product Image">
                                             <div class="overlay"></div>
                                         </a>
-                                    @endforeach
                                     <div class="text py-3 pb-4 px-3 text-center">
                                         <h3><a href="{{url('product-details/'.$porduct->slug)}}">{{$porduct->name}}</a></h3>
                                         <div class="bottom-area d-flex px-3">
@@ -85,10 +86,48 @@
                                 </div>
                             </div>
                         @endforeach
-                @endforeach
-    		</div>
-    	</div>
+                        @endif
+                    @endforeach
+                </div>
+            </div>
+            <div class="row text-center">
+                <div class="col-4"></div>
+                <div class="col-4">
+                    <p><a href="{{url('product-list/'.$brand->id)}}" class="btn btn-primary">See More Product</a></p>
+                </div>
+                <div class="col-4"></div>
+
+            </div>
+        </div>
     </section>
    @endforeach
 @include('front.layouts.footer')
 @include('front.layouts.footer_link')
+
+<script>
+    $('.category_id').click(function () {
+        var category_id = $(this).data('id');
+        var brand_id = $(this).data('brand');
+
+        $.ajax({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token-home"]').attr('content')
+            },
+            type: "GET",
+            url: "{{url("get_category_wise_product")}}",
+            data: {category_id:category_id},
+            cache: false,
+            dataType: 'html',
+            success: function (data, textStatus, jqXHR) {
+                $('#brand_id'+brand_id).html(data);
+
+                $('.cat_brand'+brand_id).removeClass('cat-active');
+                $('#category_'+category_id).addClass('cat-active');
+
+                $('.cat_brandp'+brand_id).removeClass('color-active');
+                $('#category_p'+category_id).addClass('color-active');
+
+            }
+        });
+    });
+</script>

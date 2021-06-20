@@ -30,6 +30,10 @@ class Category extends Model
         return $this->belongsToMany(Product::class, 'products_categories');
     }
 
+    public function cat_products_limit() {
+        return $this->belongsToMany(Product::class, 'products_categories')->limit(8);
+    }
+
     public function product_images() {
         return $this->hasMany(Image::class);
     }

@@ -20,4 +20,8 @@ class QuotationItem extends Model
      */
     protected $fillable = ['product_id', 'product_qty'];
 
+    public function product() {
+        return $this->hasOne(Product::class, 'id','product_id');
+    }
+
 }

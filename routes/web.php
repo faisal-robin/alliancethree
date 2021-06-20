@@ -21,6 +21,8 @@ Route::get('contact', 'Front\FrontController@contact');
 Route::post('quotation_request', 'Front\FrontController@quotation_request');
 Route::get('page/{any}', 'Front\FrontController@page');
 Route::get('pdf', 'Front\FrontController@pdf');
+Route::get('get_category_wise_product', 'Front\FrontController@get_category_wise_product');
+Route::post('contact-details', 'Front\FrontController@contact_details');
 
 Route::get('/admin', function () {
     return view('auth/login');

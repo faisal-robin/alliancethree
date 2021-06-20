@@ -11,7 +11,9 @@ use App\Models\Category;
 use App\Models\Product;
 use Illuminate\Http\Request;
 use App\Mail\QuotationEmail;
+use App\Mail\ContactEmailEmail;
 use App\Models\Company;
+use App\Models\Contact;
 use App\Models\Page;
 use Mail;
 use DB;
@@ -28,9 +30,7 @@ class FrontController extends Controller
     public function index()
     {
         $sliders = Slider::all();
-//      $categories = Category::all();
         $brands = Brand::all();
-
         return view('front/index',compact('sliders','brands'));
     }
 
@@ -96,6 +96,16 @@ class FrontController extends Controller
 
               DB::commit();
 //              Mail::to('info@workpermitcloud.co.uk')->send(new QuotationEmail($data));
+            $quotation_info = Quotation::find($quotation->id);
+
+            $pdf = PDF::loadView('front.email.quotation_email', compact('quotation_info'));
+//            return $pdf->stream('document.pdf');
+
+            Mail::send('front.email.quotation_email', $data, function($message)use($data, $pdf) {
+                $message->to($data["email"], $data["email"])
+                        ->subject('Quotation Query')
+                        ->attachData($pdf->output(), "quotation.pdf");
+                });
               return response(['status' => 'success', 'msg' => 'Quotation Submit Successfully']);
         } catch (\Exception $e) {
               DB::rollback();
@@ -106,9 +116,16 @@ class FrontController extends Controller
 
     public function pdf(){
         $quotation_info = Quotation::find(1);
-//        dd($data['quotation']);
+//        return view('front.pdf',compact('quotation_info'));
+
         $pdf = PDF::loadView('front.pdf', compact('quotation_info'));
         return $pdf->stream('document.pdf');
+    }
+
+    public function get_category_wise_product(Request $request){
+        $product_list = Product::where('main_category',$request->category_id)->get();
+        $html =  view('front/get_category_wise_product',compact('product_list'));
+        return response($html);
     }
 
 
@@ -131,7 +148,7 @@ class FrontController extends Controller
         $contact->message = $request->message;
         $contact->save();
         if ($contact->save()) {
-           Mail::to('info@workpermitcloud.co.uk')->send(new ContactEmail($data));
+           Mail::to('emran.chowdhury@alliancethree.com')->send(new ContactEmail($data));
         }
     }
 
