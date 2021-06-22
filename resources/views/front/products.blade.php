@@ -17,7 +17,9 @@
             <div class="row justify-content-center">
                 <div class="col-md-12 heading-section text-center ftco-animate text-center">
                     <span><img  style="height: 100px;" src="{{ url('storage/app/'.$brand->brand_image) }}"></span>
-                    <span class="subheading">Featured Products</span>
+                    @if($brand->brand_name == 'Halda')
+                    <span class="subheading">Welcome To Halda</span>
+                    @endif
                 </div>
             </div>
     	</div>

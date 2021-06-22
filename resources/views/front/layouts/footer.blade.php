@@ -10,7 +10,7 @@
                       <img class="float-left" style="height: 80px;width: 50%" src="{{ asset('public/front_asset/images/logo-4.png')}}">
                   </a>
               </h2>
-                <p>Get e-mail updates about our latest shops and special offers</p>
+                <p style="padding-left: 7%">Quality Allied Here</p>
               <ul class="ftco-footer-social list-unstyled float-md-left float-lft">
                 <li class="ftco-animate"><a href="#"><span style="color:#82ae46" class="icon-twitter"></span></a></li>
                 <li class="ftco-animate"><a href="#"><span style="color:#82ae46" class="icon-facebook"></span></a></li>
@@ -42,7 +42,7 @@
           </div>
           <div class="col-md">
             <div class="ftco-footer-widget mb-4">
-            	<h2 class="ftco-heading-2">Have a Questions?</h2>
+            	<h2 class="ftco-heading-2">Contact</h2>
             	<div class="block-23 mb-3">
 	              <ul>
 	                <li><span style="color:#82ae46" class="icon icon-map-marker"></span><span class="text">{{$company_info->address_1}}</span></li>
@@ -61,7 +61,7 @@
 						  <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
 						</p>
 {{--			  <p>Develop By <a href="https://www.facebook.com/faisal.robin.54">Faisal Robin</a></p>--}}
-			  <p>Copyright &copy;<script>document.write(new Date().getFullYear());</script> <a href="https://alliancethree.com">Alleance Three</a></p>
+			  <p>Copyright &copy;<script>document.write(new Date().getFullYear());</script> <a href="https://alliancethree.com">Alliance Three</a></p>
               <div class="mouse">
 						<a href="#" class="mouse-icon">
 							<div class="mouse-wheel"><span class="ion-ios-arrow-up"></span></div>

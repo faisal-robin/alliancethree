@@ -34,6 +34,12 @@ class FrontController extends Controller
         return view('front/index',compact('sliders','brands'));
     }
 
+    public function load_slider(){
+        $sliders = Slider::all();
+        $html =  view('front/get_sliders',compact('sliders'));
+        return response($html);
+    }
+
     public function about_us(){
         return view('front/about_us');
     }
@@ -102,12 +108,13 @@ class FrontController extends Controller
 //            return $pdf->stream('document.pdf');
 
             Mail::send('front.email.quotation_email', $data, function($message)use($data, $pdf) {
-                $message->to($data["email"], $data["email"])
+                $message->to('emran.chowdhury@alliancethree.com', 'emran.chowdhury@alliancethree.com')
                         ->subject('Quotation Query')
                         ->attachData($pdf->output(), "quotation.pdf");
                 });
               return response(['status' => 'success', 'msg' => 'Quotation Submit Successfully']);
         } catch (\Exception $e) {
+            dd($e);
               DB::rollback();
               return response(['status' => 'error', 'msg' => 'Internal Server Error. Please Try Again', 'data' => $e]);
         }

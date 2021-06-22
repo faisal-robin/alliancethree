@@ -5,12 +5,12 @@
 		    		<div class="row d-flex">
 		    			<div class="col-md pr-4 d-flex topper align-items-center">
 					    	<div class="icon mr-2 d-flex justify-content-center align-items-center"><span class="icon-phone2"></span></div>
-						    <span class="text">{{$company_info->phone_1}}</span>
+						    <span class="text">{{$company_info->email}}</span>
 					    </div>
 					    <div class="col-md pr-4 d-flex topper align-items-center">
                         </div>
 					    <div class="col-md-5 pr-4 d-flex topper align-items-center text-lg-right">
-						    <span class="text">{{$company_info->email}}</span>
+						    <span class="text">{{$company_info->phone_1}}</span>
 					    </div>
 				    </div>
 			    </div>
@@ -33,7 +33,7 @@
 	          <li class="nav-item dropdown">
                   <a class="nav-link dropdown-toggle" href="#" id="dropdown04" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">About</a>
                   <div class="dropdown-menu" aria-labelledby="dropdown04">
-                        <a class="dropdown-item" href="{{url('about-us')}}">About Us</a>
+                        <a class="dropdown-item" href="{{url('about-us')}}">Who We Are ?</a>
                         <a class="dropdown-item" href="{{url('page/about-halda')}}">Halda</a>
                         <a class="dropdown-item" href="{{url('page/about-jenwear')}}">Jenwear</a>
                   </div>

@@ -23,6 +23,8 @@ Route::get('page/{any}', 'Front\FrontController@page');
 Route::get('pdf', 'Front\FrontController@pdf');
 Route::get('get_category_wise_product', 'Front\FrontController@get_category_wise_product');
 Route::post('contact-details', 'Front\FrontController@contact_details');
+Route::get('load-slider', 'Front\FrontController@load_slider');
+Route::get('load-product', 'Front\FrontController@load_product');
 
 Route::get('/admin', function () {
     return view('auth/login');

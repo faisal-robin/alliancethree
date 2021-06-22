@@ -5,7 +5,7 @@
         <div class="row no-gutters slider-text align-items-center justify-content-center">
           <div class="col-md-9 ftco-animate text-center">
 {{--          	<p class="breadcrumbs"><span class="mr-2"><a href="index.php">Home</a></span> <span>About us</span></p>--}}
-            <h1 class="mb-0 bread">About Alliance Three</h1>
+            <h1 class="mb-0 bread">Who We Are ?</h1>
           </div>
         </div>
       </div>
@@ -17,7 +17,7 @@
 					</div>
 					<div class="col-md-7 py-5 wrap-about pb-md-5 ftco-animate">
                         <div class="heading-section-bold mb-4 mt-md-5">
-                            <h2 class="mb-4">About Us</h2>
+                            <h2 class="mb-4">Who We Are ?</h2>
                         </div>
                         <div class="pb-md-5">
                             <p>{!! $company_info->about_us  !!}</p>

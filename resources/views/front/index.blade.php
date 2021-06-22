@@ -1,9 +1,9 @@
 @include('front.layouts.header_link')
 @include('front.layouts.header')
 
-
-    <section id="home-section" class="hero">
-		  <div class="home-slider owl-carousel">
+<!-- <div id="load-slider" class="load-table-data"></div> -->
+<section id="home-section" class="hero">
+          <div class="home-slider owl-carousel">
           @foreach($sliders as $slider)
               <div class="slider-item" style="background-image: url({{ url('storage/app/'.$slider->slider_image) }});">
                 <div class="overlay"></div>
@@ -20,7 +20,7 @@
                 </div>
               </div>
           @endforeach
-	    </div>
+        </div>
     </section>
     <section class="ftco-section ftco-no-pb ftco-no-pt bg-light">
 			<div class="container">
@@ -28,15 +28,15 @@
 					<div class="col-md-5 p-md-5 img img-2 d-flex justify-content-center align-items-center" style="background-image: url({{ asset('public/front_asset/images/category-1.jpg')}});">
 					</div>
 					<div class="col-md-7 py-5 wrap-about pb-md-5 ftco-animate">
-	          <div class="heading-section-bold mb-4 mt-md-5">
-	          	<div class="ml-md-0">
-		            <h2 class="mb-4">About Us</h2>
-	            </div>
-	          </div>
-	          <div class="pb-md-5">
-                  <p class="text-justify">{!! $company_info->about_us !!}</p>
-						</div>
-					</div>
+                     <div class="heading-section-bold mb-4 mt-md-5">
+                        <div class="ml-md-0">
+                          <h2 class="mb-4">Who We Are ?</h2>
+                        </div>
+                  </div>
+                  <div class="pb-md-5">
+                      <p class="text-justify">{!! $company_info->about_us !!}</p>
+                  </div>
+              </div>
 				</div>
 			</div>
 		</section>
@@ -47,7 +47,9 @@
             <div class="row justify-content-center">
                 <div class="col-md-12 heading-section text-center ftco-animate text-center">
                     <span><img  style="height: 100px;" src="{{ url('storage/app/'.$brand->brand_image) }}"></span>
-                    <span class="subheading">Featured Products</span>
+                    @if($brand->brand_name == 'Halda')
+                    <span class="subheading">Welcome To Halda</span>
+                    @endif
                 </div>
             </div>
     	</div>
@@ -105,6 +107,26 @@
 @include('front.layouts.footer_link')
 
 <script>
+    // window.onload = function() {
+    //     loadSlider();
+    // };
+
+    // function loadSlider() {
+    //         $.ajax({
+    //             headers: {
+    //                 'X-CSRF-TOKEN': $('meta[name="csrf-token-home"]').attr('content')
+    //             },
+    //             type: "GET",
+    //             url: "{{url("load-slider")}}",
+    //             data: {},
+    //             cache: false,
+    //             dataType: 'html',
+    //             success: function (data, textStatus, jqXHR) {
+    //                 $('#load-slider').html(data);
+    //             }
+    //         });
+    //     }
+
     $('.category_id').click(function () {
         var category_id = $(this).data('id');
         var brand_id = $(this).data('brand');
