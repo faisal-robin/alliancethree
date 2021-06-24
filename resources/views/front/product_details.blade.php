@@ -74,6 +74,8 @@
     </section>
 @include('front.layouts.footer')
 @include('front.layouts.footer_link')
+<link rel="stylesheet" href="{{ asset('public/front_asset/flexslider/flexslider.css') }}">
+<script src="{{ asset('public/front_asset/flexslider/jquery.flexslider.js') }}"></script>
 <script>
     // Can also be used with $(document).ready()
     $(window).load(function () {

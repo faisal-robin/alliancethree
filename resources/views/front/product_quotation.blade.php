@@ -138,7 +138,7 @@
     });
 
      $("#add_btn").click(function () {
-
+        $("#add_btn").attr("disabled", true);
         $(".error_msg").html('');
         var data = new FormData($('#quotation_form')[0]);
 

@@ -1,7 +1,7 @@
 @include('front.layouts.header_link')
 @include('front.layouts.header')
 
-<!-- <div id="load-slider" class="load-table-data"></div> -->
+<div id="load-slider" class="load-table-data"></div>
 <section id="home-section" class="hero">
           <div class="home-slider owl-carousel">
           @foreach($sliders as $slider)
@@ -72,7 +72,7 @@
                             @foreach($cat_product->cat_products_limit as $porduct)
                                 <div class="col-md-6 col-lg-3 ftco-animate">
                                 <div class="product">
-                                        <a href="{{url('product-details/'.$porduct->slug)}}" class="img-prod"><img style="margin-left: 10%" class="img-fluid" src="{{ url('storage/app/'.$porduct->product_images->first()->images_name) }}" alt="Product Image">
+                                        <a href="{{url('product-details/'.$porduct->slug)}}" class="img-prod"><img loading="lazy" style="margin-left: 10%" class="img-fluid" src="{{ url('storage/app/'.$porduct->product_images->first()->images_name) }}" alt="Product Image">
                                             <div class="overlay"></div>
                                         </a>
                                     <div class="text py-3 pb-4 px-3 text-center">
@@ -107,25 +107,25 @@
 @include('front.layouts.footer_link')
 
 <script>
-    // window.onload = function() {
-    //     loadSlider();
-    // };
+    window.onload = function() {
+        loadSlider();
+    };
 
-    // function loadSlider() {
-    //         $.ajax({
-    //             headers: {
-    //                 'X-CSRF-TOKEN': $('meta[name="csrf-token-home"]').attr('content')
-    //             },
-    //             type: "GET",
-    //             url: "{{url("load-slider")}}",
-    //             data: {},
-    //             cache: false,
-    //             dataType: 'html',
-    //             success: function (data, textStatus, jqXHR) {
-    //                 $('#load-slider').html(data);
-    //             }
-    //         });
-    //     }
+    function loadSlider() {
+            $.ajax({
+                headers: {
+                     'X-CSRF-TOKEN': $('meta[name="csrf-token-home"]').attr('content')
+                 },
+                 type: "GET",
+                 url: "{{url("load-slider")}}",
+                 data: {},
+                 cache: false,
+                 dataType: 'html',
+                 success: function (data, textStatus, jqXHR) {
+                     $('#load-slider').html(data);
+                 }
+            });
+    }
 
     $('.category_id').click(function () {
         var category_id = $(this).data('id');
@@ -153,3 +153,4 @@
         });
     });
 </script>
+
