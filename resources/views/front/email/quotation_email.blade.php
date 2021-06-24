@@ -65,7 +65,6 @@
         </tr>
     </table>
 
-
     <table width="100%" style="font-family: sans-serif;" cellpadding="6">
         <tr>
             <td width="49%" style="background-color: #82ae46; color:#fff">Invoice Info</td>

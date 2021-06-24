@@ -107,7 +107,7 @@ class FrontController extends Controller
             $pdf = PDF::loadView('front.email.quotation_email', compact('quotation_info'));
 //            return $pdf->stream('document.pdf');
 
-            Mail::send('front.email.quotation_email', $data, function($message)use($data, $pdf) {
+            Mail::send('front.email.quotation_email_body', $data, function($message)use($data, $pdf) {
                 $message->to('emran.chowdhury@alliancethree.com', 'emran.chowdhury@alliancethree.com')
                         ->subject('Quotation Query')
                         ->attachData($pdf->output(), "quotation.pdf");
