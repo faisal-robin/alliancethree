@@ -1,6 +1,13 @@
 @include('front.layouts.header_link')
 @include('front.layouts.header')
-    <div class="hero-wrap hero-bread" style="background-image: url({{ asset('public/front_asset/images/bg_1.jpg')}});">
+    <div class="hero-wrap hero-bread"
+    @if($page_info->page_tag == "about-jenwear")
+        style="background-image: url({{ asset('public/front_asset/images/jenware-1.jpg')}});"
+    @else
+       style="background-image: url({{ asset('public/front_asset/images/bg_1.jpg')}});"
+    @endif
+
+    >
       <div class="container">
         <div class="row no-gutters slider-text align-items-center justify-content-center">
           <div class="col-md-9 ftco-animate text-center">
