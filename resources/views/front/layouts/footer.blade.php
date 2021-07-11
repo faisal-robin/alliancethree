@@ -70,5 +70,9 @@
           </div>
         </div>
       </div>
+      <div class="whatsapp">
+<a href="https://api.whatsapp.com/send?phone=+8801820987636" target="_blank">    
+<h5><span style="margin-left: 15%;" class="icon-whatsapp"></span></h5></a>
+                </div>
     </footer>
 {{--_5xjXH1hwp_i--}}

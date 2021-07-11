@@ -25,9 +25,9 @@
                                     <th width="10%">Action</th>
                                 </tr>
                             </thead>
-                            <tbody>
+                            <tbody class="mainbody">
                                 <tr>
-                                    <td>1</td>
+                                    <td class="rownumber">1</td>
                                     <td>
                                         <select id="product_id" class="select2 form-control" name="product_id[]">
                                             <option value="">Select Product</option>
@@ -129,13 +129,21 @@
 
 <script>
     $('#add_qoute').click(function () {
-        $('#product_table > tbody:last').append('<tr><td>1</td><td><select name="product_id[]" class="form-control select2"><option value="">Select Product</option>@foreach($all_product as $value)<option value="{{$value->id}}">{{$value->name}}</option>@endforeach</select></td><td><input class="form-control" style="height: 35px !important;" type="text" value="1" name="product_qty[]" /></td><td><span style="font-size: 25px;color:red" class="icon-minus-circle delete_row"></span></td></tr>'
+        $('#product_table > tbody:last').append('<tr><td class="rownumber"></td><td><select name="product_id[]" class="form-control select2"><option value="">Select Product</option>@foreach($all_product as $value)<option value="{{$value->id}}">{{$value->name}}</option>@endforeach</select></td><td><input class="form-control" style="height: 35px !important;" type="text" value="1" name="product_qty[]" /></td><td><span style="font-size: 25px;color:red" class="icon-minus-circle delete_row"></span></td></tr>'
         );
+        renumberRows()
         $(".delete_row").click(function(event) {
             $(this).parent().parent().remove();
+            renumberRows()
         });
         $('.select2').select2();
     });
+
+        function renumberRows() {
+            $(".mainbody > tr").each(function(i, v) {
+                $(this).find(".rownumber").text(i + 1);
+            });
+        }
 
      $("#add_btn").click(function () {
         $("#add_btn").attr("disabled", true);

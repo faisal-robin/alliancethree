@@ -4,6 +4,8 @@
     <title>Alliance Three</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <!-- <meta name="description" content="Free Web tutorials"> -->
+    <meta name="keywords" content="Alliance Three, Halda, Genwear, Vegitable, Import, Export">
     <meta name="csrf-token-home" content="{{ csrf_token() }}">
 {{--    <link rel="icon" type="image/png" sizes="32x32" href="{{ asset('public/front_asset/images/favicon-32x32.png')}}">--}}
     <link href="https://fonts.googleapis.com/css?family=Poppins:200,300,400,500,600,700,800&display=swap" rel="stylesheet">

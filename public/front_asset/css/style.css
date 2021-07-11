@@ -10049,4 +10049,17 @@ textarea.form-control {
     color: #82ae46 !important;
 }
 
+.whatsapp {
+    position: fixed;
+    right: 0px;
+    top: 52%;
+}
+.whatsapp h5 {
+    color: white;
+    background: #20b20f;
+    padding: 12px;
+    border-radius: 50%;
+    width: 50px;
+}
+
 

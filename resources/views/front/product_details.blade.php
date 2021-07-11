@@ -32,7 +32,7 @@
 
     			<div class="col-lg-6 product-details pl-md-5 ftco-animate">
     				<h1  class="product-name">{{$product_info->name}}</h1>
-    				<p>{{$product_info->description}}</p>
+                    <p class="text-justify">{!! $product_info->description !!}</p>
           	<p><a href="{{url('product-quotation')}}" class="btn btn-primary py-3 px-5">Get Quote</a></p>
     			</div>
     		</div>
